@@ -28,9 +28,11 @@
     let {tabledata} = this.props
     const textlength = tabledata.length
     if(textlength >6){
+
       for(let i=0; i < textlength;i++){
+
         if(textlength >6 && i>=5){
-          res.push(<Link className={this.state.datavisible? 'usergroupdisplay':'usergrouphidden'} to ={``} key={i}>{tabledata[i].groupname}></\Link>)
+          res.push(<Link className={this.state.datavisible? 'usergroupdisplay':'usergrouphidden'} to ={``} key={i}>{tabledata[i].groupname}></Link>)
           
         }else {
           res.push(<Link className='usergroupdisplay' to={``} key={i} >{tabledata[i].grouptempName}</Link>)
