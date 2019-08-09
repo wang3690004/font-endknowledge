@@ -91,4 +91,32 @@ function|object nextState,
 10. 代码分割及优化
 11. context 对于多层组件的 props 可以直接共享而不用显示的通过组件树去逐层传递
 12. 错误边界
-13.
+13. 高阶组件,**高阶组件是参数为组件，返回值为新组件的函数**,听这个意思有点像是一个装饰器，在原有的组件上通过一个函数 在添加一个新的功能的意思  实际上就是创建一个新的组件，这个新的组件这个新的组件包裹wrappedcomponent 组件 ，在这个新的组件里面 父组件将一些需要添加的功能都放在父组件里面了，是纯函数。
+const enhancedComponent = higherOrderComponent(wrappedComponent)
+
+> function withSubscription(wrappedComonent,selectData){
+    return class extends React.Component{
+        constructor(props)
+        this.state={
+            data:selectData(DataSource,props)
+        }
+        componentDidMount(){
+            ...
+        }
+        ...
+        render(){
+            return <wrappedComponent data={this.state.data} {...this.props}>
+        }
+    }
+}
+
+注意:HOC 不会修改传入的组件，也不会使用继承来复制行为，HOC通过将组件包装在容器组件中组成新的组件，HOC是纯函数。被包装组件接受来自容器组件的所有prop 同时也是接受一个新的用于render 的data prop HOC不需要关心数据的使用方式或原因，而被包装组件也不需要关心数据是怎么来的
+因为widthsubscription 是一个普通函数，可以根据需要对参数进行修改。 
+ 
+注意：不要在render方法中使用hoc  
+>render(){
+    const enhancedcomponent = enchance(mycomponent)
+    return <enhancedcomponent />
+}
+
+如果在组件之外创建hoc 这样一来组件只会创建一次，因此每次render的时候都会是同一个组件，而在redner中调用hoc 那么每一次渲染都会重新创建组件，这样组件的状态会丢失的
