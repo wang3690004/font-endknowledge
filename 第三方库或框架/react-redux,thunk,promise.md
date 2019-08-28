@@ -1,6 +1,6 @@
 ####react-redux 
 以前在学习vue的时候vuex就没搞明白。  现在开始学习react,特地创建一个文件来记录学习redux
-先感谢一波 https://github.com/brickspert/blog/issues/22 分享的文章
+
 
 redux 是一个状态管理工具，react设计理念是单向数据流而且从高向低流动，而我们在构建react时候 通常需要获取其他组件的状态，如果组件繁多 获取修改其状态就比较麻烦。
 
@@ -159,4 +159,7 @@ redux-thunk 概念： dispath一个action 后，到达reducer之前，进行一�
     const store = createStore(reducers,applyMiddleware(thunk))
 
     直接将thunk中间件引入，放在applymiddleware 方法之中，传入creatstore方法 就完成了distpath功能的增强，可以在reducer中进行一个异步的操作
-    
+ 
+ 感谢以下链接:
+ https://www.cnblogs.com/vvjiang/p/9505646.html
+ https://github.com/brickspert/blog/issues/22
