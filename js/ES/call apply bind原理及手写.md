@@ -40,13 +40,25 @@ obj.myFun.apply(db,['成都','上海']);
 obj.myFun.bind(db,'成都','上海')();      
 obj.myFun.bind(db,['成都','上海'])();
 
-
-
-https://segmentfault.com/a/1190000017957307
-
-
 注意：
 1. 如果不需要关心具体有多少参数被传入用apply，如果确定函数可接收多少个参数，并且想一目了然表达形参和实参的对应关系用call 
 如果想要将来再调用方法，不需要立刻得到函数并且返回结果，则使用bind
 2. 调用call apply,bind的对象必须是一个函数function 
 3. 当函数作为对象里的方法被调用时，他们的this是调用该函数的对象。
+
+apply
+> Function.prototype.myapply = function (context=window,args=[]){
+  const key = Symbol()
+  context[key] = this
+  //这里的this其实指向的是调用myapply的方法
+  //给context新增一个独一无二的属性以免覆盖原有属性
+  const result = context[key](...args)
+
+  delete context[key]
+  return result
+}
+
+
+
+感谢以下链接的分享：
+https://segmentfault.com/a/1190000017957307
