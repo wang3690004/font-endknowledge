@@ -58,6 +58,27 @@ apply
   return result
 }
 
+call 
+>Function.prorotype.mycall = function(context =window,...args){
+  const key = Symbol()
+  context[key] = this
+  const result = context[key](...args)
+  delete context[key]
+  return result
+}
+
+>bind
+ Function.prototype.mybind = function(context = [],...args){
+   const fn =this
+   args = args? args:[]
+   return function newFn(...newfnargs){
+     if(this instanceof newFn){
+       return new fn(...args,...newfnargs)
+     }
+     return fn.apply(context,[...args,...newfnargs])
+   }
+ }
+
 
 
 感谢以下链接的分享：
