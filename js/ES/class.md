@@ -17,11 +17,10 @@ class test {
   static getname(){
     return this.a-this.b-this.c
   }
-}
 var a  = new test(5)
 
 
-有限定条件的定义： 
+有限定条件的定义：  
 实例属性：不能再构造方法外部定义实例属性，只能在构造方法里定义实例属性
  
 

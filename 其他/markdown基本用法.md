@@ -16,3 +16,17 @@
 | col 1 is |  left-aligned | $1600 |
 | col 2 is |    centered   |   $12 |
 | col 3 is | right-aligned |    $1 |
+
+2.代码格式
+```
+aaaaaaa
+```
+>内容引用
+
++ 列表一
+  + xxx
+  - xxx
++ 列表二
+  1. ddd
+  2. sdsd
+  [官网链接](http://baidu.com)
