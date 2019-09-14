@@ -41,6 +41,14 @@ obj.myFun.bind(db,'成都','上海')();
 obj.myFun.bind(db,['成都','上海'])();
 
 
+call:
+ function call(content=window){
+   content.fn = this
+   let = args = [...arguments].slice(1)
+   let result = content.fn(...args)
+   return result
+ }
+
 
 https://segmentfault.com/a/1190000017957307
 
