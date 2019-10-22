@@ -1,0 +1,2 @@
+####gatsby 相关
+1.遇到一个问题打包的时候发现 window navigator 全部都是undefined.stackoverflow后才明白,这种服务端渲染的框架本质还是node去生成一个个页面模板。在报错的页面发现我是在render()里面调用了navigator||location 等内置对象，所以才会出现问题，因为在开发阶段 react组件只是运行在浏览器中所以不会有问题，但是当构建时，gastby 渲染在服务端，所以想要访问navigator location 必须要在componentdidmount 这个周期之后才能使用 这个时候html才算是正式生成出来了，
