@@ -188,6 +188,29 @@ https://segmentfault.com/a/1190000015453413?utm_source=tag-newest
 
 6,7 这两个还真的需要看一下业务代码，不再赘述。
 
+8. 看了react文档中的代码分割下 import,react.lazy suspense 关于懒加载常规组件的做法，
+    关于import异步导入组件方法目前还只是个提案 后面或许会成为标准. 这个有点和路由懒加载
+  ```
+  使用之前
+  import {add} from './math'
+  import otherComponent from './othercomponent'
+  使用之后
+  import("./math").then(math=>{
+    console.log(math.add(11,11))
+  })
+  const othercomponent = React.lazy(()=>import(./othercomponent))
+  function mycomponent(){
+    return (
+      <div>
+      <Suspense fallback = {<div>loading</div>}>
+      <othercomponent /> 
+      </Suspense>
+      </div>
+    )
+  }
+  ```
+
+  9. 可不可以这样先做一个前端埋点 把重要的使用率高的组件进行优先加载，使用率低的 不重要的 直接打成一个按需加载的包， 而且感觉路由懒加载的话 对于一些像是首页 登录页 home页的话 没有必要去做一个懒加载吧  
 
 
 注:关于bundle-analyzer里面 几个属性的含义
