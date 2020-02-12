@@ -1,0 +1,3 @@
+> this.iframesrc = `${data['iframeurl']}/middlepage?confNum=${encodeURIComponent(data['confnum'])}&principle=${encodeURIComponent(data.subAccount.principle)}&credential=${encodeURIComponent(data.subAccount.credential)}`
+            // this.iframesrc = `${data['iframeurl']}/middlepage?confNum=${encodeURIComponent(data['confnum'])}&principle=${encodeURIComponent(data.subAccount.principle)}&credential=${encodeURIComponent('=+~(.)+s-s#ddw/w^&ccc*(gddgf@g!')}` 
+              
