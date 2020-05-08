@@ -150,6 +150,10 @@ TCP UDP 的区别
     |referer|对请求中uri的原始获取方|
     |user-agent|客户端信息，Mozilla/5.0 (Windows NT 6.1; WOW64; rv:13.0) Gecko/20100101 Firefox/13.0.1|
 
+    accept-encoding:gzip defate  告知服务器用户代理支持的内容编码及内容编码的优先级顺序， gzip , compress,deflate
+    accept-language: 服务器用户代理能够处理的自然语言集，以及自然语言集的相对优先级，可一次指定多种自然语言集 zh-cn zh 
+
+
     http响应报文: 
     |响应字段名|说明|
     |:----|---:|
@@ -160,7 +164,7 @@ TCP UDP 的区别
     http实体首部报文: 
     |实体首部字段名|说明|
     |:----|---:|
-    |allow|资源可支持的http方法|
+    |allow|资源可支持的http方法,get,post等| 
     |content-encoding|实体适用的编码方式|
     |content-length|实体主体的大小（字节）15000|
     |content-type|实体主体的媒体类型（最常用）text/html;charset=utf-8 application/json,application/x-www-form-urlencoded,|
@@ -169,6 +173,9 @@ TCP UDP 的区别
 
     还有部分非http1.1首部字段例如 cooike set-cooike 等
     关于表单格式enctype属性和请求头content-type有关系, 他可能有几种值 application/x-www-form-urlcoded, multipart/form-data,text/plain。属性默认值是 application/x-www-form-urlencoded(表示普通的form表单元素提交，在发送前编码所有字符，提交的参数格式遵循name=value&name=value)
+
+    content-encoding: 客户端服务器对实体的主体部分选用的内容编码方式和 accept-encoding 类似
+    expires: 会将资源失效的日期告知客户端 缓存服务器在接收到含有首部字段expires 响应后，会以缓存来应答请求，超过指定时间后 缓存服务器在接收请求后 会转发中资源服务器
 
     multipart/form-data: 表示不对字符编码直接提交二进制文件流 在使用包含文件上传form表单时，必须使用该值
     text/plain: 表示空格转换为 + 但不对特殊字符编码
@@ -205,3 +212,4 @@ TCP UDP 的区别
 感谢其他链接的分享
 https://cloud.tencent.com/developer/news/257281
 https://juejin.im/post/5df7959051882512480a83e7 https 加密
+https://www.cnblogs.com/jycboy/p/http_head.html
