@@ -67,3 +67,35 @@ let myidentity: {<T>(arg:T):T} = loggingidnetity
  示例做了少许改动，不再描述泛型函数，而是把非泛型函数签名作为泛型函数类型一部分，当我们使用a的时候 还得传入一个类型参数来指定泛型类型<number> 锁定了之后 代码里面使用的类型。对于描述哪部分类型属于泛型部分来说，理解何时把参数放在调用签名和何时放在接口上是有帮助的
 
  ```
+
+ 4. 泛型类
+ 泛型类看上去与泛型接口差不多，泛型类使用<> 扩气泛型类型，跟在类名后面
+ ```
+ class A<T>{
+     zerovalue:T,
+     add:(x:T,y:T)=>T
+ }
+ let a = new A<number>()
+ a.zerovalue = 0
+ a.add = function(x,y){return x+y}
+ ```
+
+ 5. 泛型约束
+ 之前有个例子，我们有时候想要操作某一类型的一组值，并且我们知道这组值具有什么样的属性，在例子中，我们想要访问arg的length属性，但是编译器不能证明每种类型都又length值 所以报错了
+ ```
+ function a<T>(arg:T):T{
+     console.log(arg.length) // T doesn't have length
+     return arg
+ }
+ 相比于any所有类型，我们想要限制函数去处理length属性的所有类型， 那么我们就可以在泛型的基础上再添加一个限制，比如说只允许带有length属性的类型 才可以用到这个函数
+
+interface lengthwise{
+    length:number
+}
+function a<T extends lengthwise>(arg:T):T{
+    console.log(arg.length) // number
+    return arg
+}
+因为这个函数添加了约束了 所有传入的数据类型必须显式或隐式带有length属才行
+a([]),a({length:2,value:3})
+ ```
