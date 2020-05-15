@@ -99,3 +99,7 @@ function a<T extends lengthwise>(arg:T):T{
 因为这个函数添加了约束了 所有传入的数据类型必须显式或隐式带有length属才行
 a([]),a({length:2,value:3})
  ```
+
+
+####接口 interface
+接口类型 更像是服务于对象类型的
