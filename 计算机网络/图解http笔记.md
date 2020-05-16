@@ -122,8 +122,65 @@ TCP UDP 的区别
 
 
 5. http首部
+    http 协议的请求和响应报文中 必定包含http首部，http首部分为  报文首部（http头，客户端和服务器处理时气到信息通知的作用），报文主体（用户和服务器所需要的资源信息）
+
+    通用首部字段:
+
+    |首部字段名|说明|
+    |:----|---:|
+    |cache-control|控制缓存行为|
+    |connection|逐跳首部、连接的管理|
+    |date|创建报文的日期时间|
+    |pragma|报文指令|
+    |via|代理服务器相关信息|
+    |upgrade|升级为其他协议|
 
 
+    http请求报文: 
+    |请求字段名|说明|
+    |:----|---:|
+    |accept|用户代理可处理的媒体类型|
+    |accept-charset|有限的字符集|
+    |accept-encoding|优先的内容编码|
+    |authorization|web认证信息|
+    |host|请求资源所在的服务器|
+    |if-match|比较实体标记(Etag)|
+    |if-modify-since|比较资源的更新时间|
+    |if-none-match|比较实体标记(与if-match相反)|
+    |referer|对请求中uri的原始获取方|
+    |user-agent|客户端信息，Mozilla/5.0 (Windows NT 6.1; WOW64; rv:13.0) Gecko/20100101 Firefox/13.0.1|
+
+    accept-encoding:gzip defate  告知服务器用户代理支持的内容编码及内容编码的优先级顺序， gzip , compress,deflate
+    accept-language: 服务器用户代理能够处理的自然语言集，以及自然语言集的相对优先级，可一次指定多种自然语言集 zh-cn zh 
+
+
+    http响应报文: 
+    |响应字段名|说明|
+    |:----|---:|
+    |age|推算资源创建经过时间|
+    |etag|资源的匹配信息|
+    |location|令客户端重定向至指定uri|
+  
+    http实体首部报文: 
+    |实体首部字段名|说明|
+    |:----|---:|
+    |allow|资源可支持的http方法,get,post等| 
+    |content-encoding|实体适用的编码方式|
+    |content-length|实体主体的大小（字节）15000|
+    |content-type|实体主体的媒体类型（最常用）text/html;charset=utf-8 application/json,application/x-www-form-urlencoded,|
+    |expires|实体主体过期的时间|
+    |last-modified|资源的最后修改时间|
+
+    还有部分非http1.1首部字段例如 cooike set-cooike 等
+    关于表单格式enctype属性和请求头content-type有关系, 他可能有几种值 application/x-www-form-urlcoded, multipart/form-data,text/plain。属性默认值是 application/x-www-form-urlencoded(表示普通的form表单元素提交，在发送前编码所有字符，提交的参数格式遵循name=value&name=value)
+
+    content-encoding: 客户端服务器对实体的主体部分选用的内容编码方式和 accept-encoding 类似
+    expires: 会将资源失效的日期告知客户端 缓存服务器在接收到含有首部字段expires 响应后，会以缓存来应答请求，超过指定时间后 缓存服务器在接收请求后 会转发中资源服务器
+
+    multipart/form-data: 表示不对字符编码直接提交二进制文件流 在使用包含文件上传form表单时，必须使用该值
+    text/plain: 表示空格转换为 + 但不对特殊字符编码
+    当使用form表单上传文件时post请求的时候，需要在form表单中添加enctype='multipart/form-data',请求头中有一个content-type字段，会生命数据编码格式 浏览器会自动添加content-type:multipart/form-data,
+    如果form 中没有指定enctype 浏览器会自动添加默认的  content -type: application/x-www-form-urlencoded;charset=utf-8
 
 6. 确保web安全的https
   1.http 本身是不够安全的它使用的是明文，所以在通信过程中会存在报文被监听或者篡改的可能性。所以需要使用 http+认证+ 加密 + 完整性保护 = https
@@ -155,3 +212,4 @@ TCP UDP 的区别
 感谢其他链接的分享
 https://cloud.tencent.com/developer/news/257281
 https://juejin.im/post/5df7959051882512480a83e7 https 加密
+https://www.cnblogs.com/jycboy/p/http_head.html
