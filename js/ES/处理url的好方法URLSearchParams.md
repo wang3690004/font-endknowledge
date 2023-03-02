@@ -7,7 +7,7 @@ github 上一个练习题目
 'https://www.xx.cn/api?keyword=&level1=&local_batch_id=&elective=800,700&local_province_id=3'
 中elective 后的数字输出 => []|| ['800'] || ['700']
 
-一开始想到的是用正则去处理，发现我还真不太会写这个正则（后面要去加强学习）。 看了看其他人的写法有用到 new URLSearchParams() 这个类.
+一开始想到的是用正则去处理。 看了看其他人的写法有用到 new URLSearchParams() 这个类.
 找了一下这个方法,除了不兼容IE 浏览器这个小小的缺点外 是个非常好用的方法
 
 方法有这些
